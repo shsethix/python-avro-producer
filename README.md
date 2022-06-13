@@ -9,10 +9,11 @@ cd python-avro-producer
 
 virtualenv ./venv
 
+// python3 -m pip install --user virtualenv
 
 source ./venv/bin/activate
 
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 ```
 
@@ -20,12 +21,22 @@ pip install -r requirements.txt
 
 - Ensure kafka and schema registery is running.
 
-```
-
-python send_record.py --topic notificationsWebhooks --schema-file webhook-event.avsc --record-value  '{ "eventId": "23123", "origin": "TWILIO" ,"parameters": { "conversationSid": "externalConversationId", "eventType": "onDeliveryUpdated", "participantSid": "externalConversationId", "messageSid": "externalMessageId", "status": "sent" } }'
+### Send Records to outbound
 
 ```
+python send_record.py --topic notificationsOutboundMessages --schema-subject-name com.compass.notification.events.sms.outbound.v1.NotificationsOutboundMessage --record-value  '{"userId": null, "fromPhoneNumber": null, "eventId": "23124", "partnerMessageId": "1000001", "toPhoneNumber": "+1123456789", "productId": 1, "attachments": null, "externalConversationId": null, "chatServiceSid": null, "body": null }'
 
+```
+#### Register Outbound messanger
+
+```
+curl --location --request POST 'http://localhost:8081/subjects/com.compass.notification.events.sms.outbound.v1.NotificationsOutboundMessage/versions' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "schema": "{\"type\": \"record\", \"namespace\": \"com.compass.notification.events.sms.outbound.v1\", \"name\": \"NotificationsOutboundMessage\", \"fields\": [{\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"eventId\"}, {\"type\": {\"type\": \"string\", \"avro.java.string\": \"String\"}, \"name\": \"partnerMessageId\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"fromPhoneNumber\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"toPhoneNumber\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"body\"}, {\"default\": null, \"type\": [\"null\", {\"items\": {\"type\": \"string\", \"avro.java.string\": \"String\"}, \"type\": \"array\"} ], \"name\": \"attachments\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"externalConversationId\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"chatServiceSid\"}, {\"type\": \"int\", \"name\": \"productId\"}, {\"default\": null, \"type\": [\"null\", {\"type\": \"string\", \"avro.java.string\": \"String\"} ], \"name\": \"userId\"} ] }"
+}'
+
+```
 
 ### Verify message sent
 

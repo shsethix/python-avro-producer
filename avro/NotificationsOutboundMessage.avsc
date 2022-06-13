@@ -1,0 +1,120 @@
+{
+  "type": "record", 
+  "namespace": "com.compass.notification.events.sms.outbound.v1", 
+  "name": "NotificationsOutboundMessage", 
+  "fields": [
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "eventId"
+    }, 
+    {
+      "type": {
+        "type": "string", 
+        "avro.java.string": "String"
+      }, 
+      "name": "partnerMessageId"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "fromPhoneNumber"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "toPhoneNumber"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "body"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "items": {
+            "type": "string", 
+            "avro.java.string": "String"
+          }, 
+          "type": "array"
+        }
+      ], 
+      "name": "attachments"
+    }, 
+    {
+      "default": null,
+      "type": [
+        "null",
+        {
+          "items": "com.compass.notification.events.sms.outbound.v1.MediaAttachment",
+          "type": "array"
+        }
+      ],
+      "name": "mediaAttachments"
+    },
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "externalConversationId"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "chatServiceSid"
+    },
+    {
+      "type": "int", 
+      "name": "productId"
+    }, 
+    {
+      "default": null, 
+      "type": [
+        "null", 
+        {
+          "type": "string", 
+          "avro.java.string": "String"
+        }
+      ], 
+      "name": "userId"
+    }
+  ]
+}
