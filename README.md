@@ -24,7 +24,7 @@ python3 -m pip install -r requirements.txt
 ### Send Records to outbound
 
 ```
-python send_record.py --topic notificationsOutboundMessages --schema-subject-name com.compass.notification.events.sms.outbound.v1.NotificationsOutboundMessage --record-value  '{"userId": null, "fromPhoneNumber": null, "eventId": {"string": "23123"}, "partnerMessageId": "1000001", "toPhoneNumber": {"string": "+1123456789"}, "productId": 1, "attachments": null, "externalConversationId": null, "chatServiceSid": null, "body": null }'
+python send_record.py --topic notificationsOutboundMessages --schema-subject-name com.compass.notification.events.sms.outbound.v1.NotificationsOutboundMessage --record-value  '{"userId": null, "fromPhoneNumber": null, "eventId": "23124", "partnerMessageId": "1000001", "toPhoneNumber": "+1123456789", "productId": 1, "attachments": null, "externalConversationId": null, "chatServiceSid": null, "body": null }'
 
 ```
 #### Register Outbound messanger
